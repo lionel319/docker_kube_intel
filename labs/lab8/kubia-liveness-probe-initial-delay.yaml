@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubia-liveness
+spec:
+  containers:
+  - image: stv707/kubia-unhealthy:v1
+    name: kubia
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 8080
+      periodSeconds: 5
+      initialDelaySeconds: 15
+    ports:
+    - containerPort: 8080
+      protocol: TCP

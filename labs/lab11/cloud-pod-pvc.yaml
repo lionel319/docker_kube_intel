@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cloud-app
+spec:
+      containers:
+      - name: cloud-app
+        image: alpine
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name: my-data
+            mountPath: /var/cdata
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do date >> /var/cdata/cloud-app.txt; sleep 20; echo cloud-app>> /var/cdata/cloud-app.txt; done"]
+        ports:
+        - containerPort: 7171
+          protocol: TCP
+      volumes:
+        - name: my-data
+          persistentVolumeClaim:
+            claimName: cloud-disk-2g

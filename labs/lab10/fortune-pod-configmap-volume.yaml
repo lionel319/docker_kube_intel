@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: fortune-configmap-volume
+  name: fortune-configmap-volume-pod
 spec:
   containers:
   - image: stv707/fortune:env
